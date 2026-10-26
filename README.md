@@ -109,10 +109,4 @@ Requiere [`weasyprint`](https://weasyprint.org/). En Linux/macOS suele instalars
 - No detecta contraseñas débiles (la API no las expone).
 - En RouterOS v6 se omiten los checks de OSPF/BGP/WireGuard (son rutas de v7).
 
-## Hardening de referencia
 
-Este repo incluye [`hardening-base.rsc`](./hardening-base.rsc), una plantilla de configuración base para RouterOS 7.x (servicios mínimos, firewall con anti fuerza bruta escalonado, logging remoto, política de contraseñas, etc.) pensada para aplicarse bloque a bloque y luego verificarse con RosAudit.
-
-## Licencia
-
-MIT (o la que prefieras añadir aquí).
