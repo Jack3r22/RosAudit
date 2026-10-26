@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# rosaudit — lanzador de la auditoría MikroTik (read-only)
+# Sin argumentos abre el modo interactivo:  rosaudit
+# Con argumentos, pasa todo al script:       rosaudit --host 10.0.0.1 --user auditor --ask-pass
+set -euo pipefail
+
+PY="${ROSAUDIT_PY:-$HOME/venv/ros/bin/python}"
+SCRIPT="${ROSAUDIT_SCRIPT:-$HOME/mikrotik-audit/audit_ros.py}"
+
+if [[ ! -x "$PY" ]]; then
+  echo "ERROR: no encuentro el entorno en $PY" >&2
+  echo "Créalo con:" >&2
+  echo "  python3 -m venv ~/venv/ros && ~/venv/ros/bin/pip install librouteros" >&2
+  exit 1
+fi
+
+if [[ ! -f "$SCRIPT" ]]; then
+  echo "ERROR: no encuentro el script en $SCRIPT" >&2
+  echo "Ajusta ROSAUDIT_SCRIPT o mueve el proyecto a esa ruta." >&2
+  exit 1
+fi
+
+exec "$PY" "$SCRIPT" "$@"
